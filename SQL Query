@@ -1,4 +1,4 @@
-CREATE TABLE PBI_Kimia_Farma.analisis_table AS
+CREATE TABLE `PBI_Kimia_Farma.tabel_analysis` AS
 SELECT
   ft.transaction_id,
   ft.date,
@@ -12,7 +12,6 @@ SELECT
   p.product_name,
   p.price AS actual_price,
   ft.discount_percentage,
-  ft.rating AS rating_transaksi
   CASE
     WHEN p.price <= 50000 THEN 0.10
     WHEN p.price > 50000 AND p.price <= 100000 THEN 0.15
@@ -20,7 +19,6 @@ SELECT
     WHEN p.price > 300000 AND p.price <= 500000 THEN 0.25
     ELSE 0.30
   END AS persentase_gross_laba,
-  p.price AS harga_asli,
   (p.price * (1 - ft.discount_percentage / 100)) AS nett_sales,
   ((p.price * (1 - ft.discount_percentage / 100)) * 
     CASE
